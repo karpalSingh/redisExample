@@ -1,0 +1,4 @@
+FROM redisexample:0.1
+COPY config/application.properties /usr/app/application.properties
+USER appuser
+CMD ["dumb-init", "java", "-Xmx128m", "-XX:+IdleTuningGcOnIdle", "-Xtune:virtualized", "-Xscmx128m", "-Xscmaxaot100m", "-Xshareclasses:cacheDir=/usr/app/shareclasses", "-jar", "/usr/app/redisExample.jar"]
